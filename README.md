@@ -42,11 +42,6 @@ The project strictly follows the requested course layout:
 │   └── img/
 │       ├── logo.svg             # Vector shield logo
 │       └── default-avatar.svg   # Vector privacy avatar
-├── lecture_materials/           # Original classroom / lecture starter files
-│   ├── index (1).html
-│   ├── profile.html.html
-│   ├── styles.css
-│   └── notes.txt
 └── README.md                    # Complete project documentation and code guide
 ```
 
