@@ -15,8 +15,6 @@ Artificial Intelligence models are trained on massive datasets scraped across tr
 - **Zero AI Model Harvesting**: Client-side markup and headers designed to resist automated scraping bots.
 - **Client-Side Sandbox (`localStorage`)**: Realistic authentication, profile editing, and post creation without exposing personal telemetry to a remote server.
 - **Metadata Scrubbing**: Removes tracking cookies and EXIF location tags before rendering posts.
-- **Human-Readable Code**: Written in clean, step-by-step vanilla code with beginner-friendly documentation for easy classroom presentation and defense.
-
 ---
 
 ## 📁 2. Repository Structure
