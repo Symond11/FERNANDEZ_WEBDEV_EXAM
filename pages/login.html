@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Haven Privacy Social</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-brand">HAVEN SOCIAL</a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="feed.html">Feed</a>
+        <a href="about.html">About Us</a>
+        <a href="privacy.html">Privacy Tools</a>
+      </div>
+
+      <div id="auth-nav-items">
+        <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Form Box -->
+  <main class="container">
+    <div class="box auth-box">
+      <h2>User Login</h2>
+      <p>Log in to access your anti-AI private social feed.</p>
+
+      <!-- Lecture sample credentials notice -->
+      <div class="demo-box">
+        <strong>Demo Credentials:</strong><br>
+        Username: <code>qwer</code> &nbsp;|&nbsp; Password: <code>1234</code>
+      </div>
+
+      <!-- Plain Form with Simple Inputs -->
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      </form>
+
+      <p style="margin-top: 15px; font-size: 13px; text-align: center;">
+        No account yet? <a href="signup.html">Click here to Sign Up</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Plain Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Haven Social Prototype &copy; 2026</p>
+    </div>
+  </div>
+
+  <script src="../src/js/main.js"></script>
+  <script>
+    // Simple Login Function (matches lecture pattern using document.location.href and alert)
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+
+      const userInput = document.getElementById('username').value.trim();
+      const passInput = document.getElementById('password').value;
+
+      console.log('Login form submitted with user:', userInput);
+
+      const result = loginUser(userInput, passInput);
+
+      if (result.success) {
+        alert('Login successful! Welcome back.');
+        document.location.href = 'feed.html';
+      } else {
+        alert(result.message);
+      }
+    }
+  </script>
+</body>
+</html>

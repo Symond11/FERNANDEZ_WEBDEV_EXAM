@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile | Haven Privacy Social</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-brand">HAVEN SOCIAL</a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="feed.html">Feed</a>
+        <a href="about.html">About Us</a>
+        <a href="privacy.html">Privacy Tools</a>
+        <a href="profile.html" class="active">Profile</a>
+      </div>
+
+      <div id="auth-nav-items">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Content -->
+  <main class="container">
+    
+    <!-- User Profile Box -->
+    <div class="box">
+      <div class="profile-header">
+        <h1 id="profile-name">User Name</h1>
+        <p style="color: #666; font-size: 14px;">
+          Handle: <strong id="profile-handle">@username</strong> | 
+          Status: <span id="profile-shield" class="post-tag">Protected</span>
+        </p>
+      </div>
+
+      <div>
+        <h3>About / Bio:</h3>
+        <p id="profile-bio">Zero AI tracking profile description.</p>
+
+        <!-- Edit Bio Form (Hidden initially) -->
+        <div id="bioEditSection" style="display: none; margin: 10px 0;">
+          <textarea id="bioInputField" rows="3" placeholder="Enter your new bio here..."></textarea>
+          <div style="margin-top: 8px;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="submitBioEdit()">Save Bio</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="cancelBioEdit()">Cancel</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary btn-sm" id="btnEditBio" onclick="openBioEdit()">
+          Edit Bio
+        </button>
+      </div>
+
+      <!-- Account Statistics Table -->
+      <table class="stats-table">
+        <tr>
+          <th>Total Posts Created</th>
+          <th>AI Protection Score</th>
+          <th>Account Joined</th>
+        </tr>
+        <tr>
+          <td id="profile-post-count">0</td>
+          <td style="color: #2e7d32; font-weight: bold;">100% Shielded</td>
+          <td id="profile-joined">October 2026</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- User's Personal Posts Box -->
+    <div class="box">
+      <h2>My Shielded Posts</h2>
+      <div id="profile-posts-list">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Plain Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Haven Social Prototype &copy; 2026</p>
+    </div>
+  </div>
+
+  <script src="../src/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = getCurrentUser();
+      if (!user) {
+        alert('Please log in first to view your profile.');
+        document.location.href = 'login.html';
+        return;
+      }
+
+      renderProfile();
+    });
+
+    function openBioEdit() {
+      const user = getCurrentUser();
+      document.getElementById('bioInputField').value = user.bio || '';
+      document.getElementById('bioEditSection').style.display = 'block';
+      document.getElementById('profile-bio').style.display = 'none';
+      document.getElementById('btnEditBio').style.display = 'none';
+    }
+
+    function cancelBioEdit() {
+      document.getElementById('bioEditSection').style.display = 'none';
+      document.getElementById('profile-bio').style.display = 'block';
+      document.getElementById('btnEditBio').style.display = 'inline-block';
+    }
+
+    function submitBioEdit() {
+      const newText = document.getElementById('bioInputField').value;
+      saveProfileBio(newText);
+      cancelBioEdit();
+    }
+  </script>
+</body>
+</html>

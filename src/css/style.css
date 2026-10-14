@@ -1,0 +1,432 @@
+/* ==========================================================================
+   HAVEN SOCIAL - PRIVACY-FIRST SOCIAL PLATFORM
+   Style Sheet: src/css/style.css
+   Plain & Simple Web Development Stylesheet (Beginner Friendly)
+   ========================================================================== */
+
+/* Basic page reset and typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f9;
+  color: #333333;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container to center content */
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Header & Navigation Bar */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 2px solid #2e7d32;
+  /* Simple green accent for privacy */
+  padding: 12px 0;
+  margin-bottom: 25px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.logo-brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2e7d32;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555555;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px 8px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #2e7d32;
+  border-bottom: 2px solid #2e7d32;
+}
+
+/* User Pill in Navbar */
+.nav-user {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #c8e6c9;
+}
+
+/* Main Content Area */
+main {
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+/* Standard White Box / Card */
+.box {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Headings */
+h1 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #222222;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #222222;
+}
+
+h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #444444;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #1b5e20;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333333;
+  border: 1px solid #cccccc;
+}
+
+.btn-secondary:hover {
+  background-color: #d5d5d5;
+}
+
+.btn-danger {
+  background-color: #d32f2f;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* Forms & Inputs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+  background-color: #ffffff;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #2e7d32;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Demo box for school sample credentials */
+.demo-box {
+  background-color: #e8f5e9;
+  border: 1px dashed #2e7d32;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #2e7d32;
+  border-radius: 4px;
+}
+
+.demo-box code {
+  font-weight: bold;
+  background-color: #ffffff;
+  padding: 2px 5px;
+  border: 1px solid #c8e6c9;
+  border-radius: 3px;
+}
+
+/* Centered Form Wrapper for Login/Signup */
+.auth-box {
+  max-width: 420px;
+  margin: 30px auto;
+}
+
+/* Feed Layout (Columns) */
+.feed-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.feed-main {
+  flex: 3;
+}
+
+.feed-side {
+  flex: 1;
+}
+
+/* Post Box */
+.post-item {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 8px;
+}
+
+.post-author {
+  font-weight: bold;
+  color: #2e7d32;
+  font-size: 14px;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: #777777;
+}
+
+.post-tag {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: 1px solid #c8e6c9;
+}
+
+.post-content {
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 12px;
+}
+
+.post-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Comments List */
+.comment-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #dddddd;
+}
+
+.comment-list {
+  margin-bottom: 8px;
+}
+
+.comment-row {
+  background-color: #f9f9f9;
+  padding: 6px 10px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  border: 1px solid #eeeeee;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.comment-form {
+  display: flex;
+  gap: 8px;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+/* Profile Page */
+.profile-header {
+  border-bottom: 2px solid #2e7d32;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.stats-table th,
+.stats-table td {
+  border: 1px solid #dddddd;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.stats-table th {
+  background-color: #f2f2f2;
+}
+
+/* Feature Grid for Landing and About */
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.feature-box {
+  flex: 1 1 200px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+/* Privacy Settings Table */
+.settings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.settings-table th,
+.settings-table td {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.settings-table th {
+  background-color: #f2f2f2;
+}
+
+/* Footer */
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #dddddd;
+  padding: 15px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #666666;
+  margin-top: auto;
+}
+
+.footer a {
+  color: #2e7d32;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feed-grid {
+    flex-direction: column;
+  }
+}

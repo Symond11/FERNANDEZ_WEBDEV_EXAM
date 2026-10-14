@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feed | Haven Privacy Social</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-brand">HAVEN SOCIAL</a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="feed.html" class="active">Feed</a>
+        <a href="about.html">About Us</a>
+        <a href="privacy.html">Privacy Tools</a>
+        <a href="profile.html">Profile</a>
+      </div>
+
+      <div id="auth-nav-items">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Feed Main Container -->
+  <main class="container">
+    <div class="feed-grid">
+
+      <!-- Left Column: Main Feed -->
+      <div class="feed-main">
+
+        <!-- Post Composer Box -->
+        <div class="box">
+          <h2>Create a Post (Anti-AI Protected)</h2>
+          <p style="font-size: 13px; color: #666;">
+            Your text is shielded from web scrapers and machine learning dataset harvesters.
+          </p>
+
+          <form id="postForm" onsubmit="handlePostSubmit(event)">
+            <div class="form-group">
+              <textarea id="postContent" rows="3" placeholder="What is on your mind? Share ideas freely..." required></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <label for="postTag" style="display: inline; margin-right: 5px;">Privacy Tag:</label>
+                <select id="postTag" style="width: auto; display: inline-block;">
+                  <option value="shielded">Anti-AI Shielded</option>
+                  <option value="zeroscrape">Zero-Scrape Tag</option>
+                  <option value="ephemeral">Ephemeral (24h)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-sm">Publish Post</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div style="margin-bottom: 15px; display: flex; gap: 8px;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="filterFeedCategory('all')">All Posts</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="filterFeedCategory('shielded')">Shielded</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="filterFeedCategory('zeroscrape')">Zero-Scrape</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="filterFeedCategory('ephemeral')">Ephemeral</button>
+        </div>
+
+        <!-- Dynamic Feed List -->
+        <div id="feed-container">
+          <!-- Rendered by JavaScript -->
+        </div>
+
+      </div>
+
+      <!-- Right Column: Simple Sidebar -->
+      <div class="feed-side">
+        <div class="box">
+          <h3>Your Account</h3>
+          <p id="side-user-info" style="font-size: 14px; margin-bottom: 8px;">
+            Checking status...
+          </p>
+          <a href="profile.html" class="btn btn-secondary btn-sm btn-block" style="margin-bottom: 6px;">My Profile</a>
+          <a href="privacy.html" class="btn btn-secondary btn-sm btn-block">Privacy Settings</a>
+        </div>
+
+        <div class="box">
+          <h3>Protection Status</h3>
+          <p style="font-size: 13px; margin-bottom: 6px;"><strong>AI Scraper Firewall:</strong> <span style="color: #2e7d32;">Active</span></p>
+          <p style="font-size: 13px; margin-bottom: 6px;"><strong>Stored Cookies:</strong> <span style="color: #2e7d32;">0 Active</span></p>
+          <p style="font-size: 13px; margin-bottom: 6px;"><strong>Storage Mode:</strong> Local Browser Sandbox</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Plain Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Haven Social Prototype &copy; 2026</p>
+    </div>
+  </div>
+
+  <script src="../src/js/main.js"></script>
+  <script>
+    let currentFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = getCurrentUser();
+      const sideInfo = document.getElementById('side-user-info');
+
+      if (user) {
+        sideInfo.innerHTML = 'Logged in as: <strong>@' + escapeText(user.username) + '</strong> (' + escapeText(user.displayName) + ')';
+      } else {
+        sideInfo.innerHTML = 'Currently browsing as: <strong>Guest</strong><br><a href="login.html">Log in here</a>';
+      }
+
+      renderFeed('all');
+    });
+
+    // Form submission for new posts
+    function handlePostSubmit(e) {
+      e.preventDefault();
+
+      const user = getCurrentUser();
+      if (!user) {
+        alert('You must log in to create a post!');
+        document.location.href = 'login.html';
+        return;
+      }
+
+      const contentInput = document.getElementById('postContent');
+      const tagInput = document.getElementById('postTag');
+
+      const ok = addPost(contentInput.value, tagInput.value);
+      if (ok) {
+        contentInput.value = '';
+        alert('Post published successfully!');
+        renderFeed(currentFilter);
+      }
+    }
+
+    // Filter Feed
+    function filterFeedCategory(category) {
+      currentFilter = category;
+      console.log('Filtering feed by:', category);
+      renderFeed(category);
+    }
+  </script>
+</body>
+</html>

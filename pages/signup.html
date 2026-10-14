@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | Haven Privacy Social</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-brand">HAVEN SOCIAL</a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="feed.html">Feed</a>
+        <a href="about.html">About Us</a>
+        <a href="privacy.html">Privacy Tools</a>
+      </div>
+
+      <div id="auth-nav-items">
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Form Box -->
+  <main class="container">
+    <div class="box auth-box">
+      <h2>Create an Account</h2>
+      <p>Register a private profile to protect your posts from AI models.</p>
+
+      <form id="signupForm" onsubmit="handleSignupSubmit(event)">
+        <div class="form-group">
+          <label for="displayName">Full / Display Name:</label>
+          <input type="text" id="displayName" placeholder="e.g. Juan Dela Cruz" required>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Choose a username (e.g. juandc)" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+      </form>
+
+      <p style="margin-top: 15px; font-size: 13px; text-align: center;">
+        Already have an account? <a href="login.html">Click here to Log In</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Plain Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Haven Social Prototype &copy; 2026</p>
+    </div>
+  </div>
+
+  <script src="../src/js/main.js"></script>
+  <script>
+    // Simple Signup Handler using lecture methods
+    function handleSignupSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('displayName').value.trim();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+
+      if (pass !== confirmPass) {
+        alert('Passwords do not match! Please check again.');
+        return;
+      }
+
+      console.log('Registering user:', user);
+
+      const result = registerUser(name, user, pass);
+
+      if (result.success) {
+        alert('Registration successful! Welcome to Haven.');
+        document.location.href = 'feed.html';
+      } else {
+        alert(result.message);
+      }
+    }
+  </script>
+</body>
+</html>

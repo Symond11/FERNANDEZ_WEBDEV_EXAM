@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Tools | Haven Privacy Social</title>
+  <link rel="stylesheet" href="../src/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo-brand">HAVEN SOCIAL</a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="feed.html">Feed</a>
+        <a href="about.html">About Us</a>
+        <a href="privacy.html" class="active">Privacy Tools</a>
+        <a href="profile.html">Profile</a>
+      </div>
+
+      <div id="auth-nav-items">
+        <!-- Injected dynamically by main.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Dashboard Content -->
+  <main class="container">
+    
+    <!-- Privacy Controls Box -->
+    <div class="box">
+      <h1>Privacy & Security Tools</h1>
+      <p>Configure client-side defenses to protect your profile and posts against AI harvesting.</p>
+
+      <table class="settings-table">
+        <tr>
+          <th>Privacy Feature</th>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td><strong>AI Scraper Blocker</strong></td>
+          <td>Blocks automated web-scraping crawlers from reading your feed content.</td>
+          <td>
+            <input type="checkbox" id="chkScraper" checked onchange="toggleSettingOption('blockAiScrapers', this.checked)"> Active
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Scrub EXIF Metadata</strong></td>
+          <td>Automatically strips camera models and GPS coordinates from your posts.</td>
+          <td>
+            <input type="checkbox" id="chkExif" checked onchange="toggleSettingOption('stripExifMetadata', this.checked)"> Active
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Ephemeral Post Mode (24h)</strong></td>
+          <td>Newly published posts automatically expire and delete after 24 hours.</td>
+          <td>
+            <input type="checkbox" id="chkEphemeral" onchange="toggleSettingOption('ephemeralPostExpiry', this.checked)"> Optional
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Data Reset / Purge Box -->
+    <div class="box" style="border-color: #d32f2f;">
+      <h2 style="color: #d32f2f;">Reset All Data (Data Purge)</h2>
+      <p>
+        If you want to clear this prototype and start fresh, you can reset all stored accounts, feed posts, and sessions from your browser's <code>localStorage</code>.
+      </p>
+
+      <button type="button" class="btn btn-danger" onclick="purgeBrowserData()">Reset All Local Data</button>
+    </div>
+
+  </main>
+
+  <!-- Plain Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Haven Social Prototype &copy; 2026</p>
+    </div>
+  </div>
+
+  <script src="../src/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const settings = JSON.parse(localStorage.getItem(STORAGE_KEYS.SETTINGS) || '{}');
+      if (document.getElementById('chkScraper')) document.getElementById('chkScraper').checked = settings.blockAiScrapers ?? true;
+      if (document.getElementById('chkExif')) document.getElementById('chkExif').checked = settings.stripExifMetadata ?? true;
+      if (document.getElementById('chkEphemeral')) document.getElementById('chkEphemeral').checked = settings.ephemeralPostExpiry ?? false;
+    });
+
+    function toggleSettingOption(key, isChecked) {
+      const settings = JSON.parse(localStorage.getItem(STORAGE_KEYS.SETTINGS) || '{}');
+      settings[key] = isChecked;
+      localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settings));
+      alert('Setting updated: ' + key + ' is now ' + (isChecked ? 'ACTIVE' : 'INACTIVE'));
+    }
+
+    function purgeBrowserData() {
+      if (confirm('Are you sure you want to reset all prototype data? This will clear all posts and accounts.')) {
+        localStorage.clear();
+        initializeData();
+        alert('All local storage has been reset to defaults.');
+        document.location.href = '../index.html';
+      }
+    }
+  </script>
+</body>
+</html>
